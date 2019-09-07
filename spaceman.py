@@ -83,9 +83,9 @@ def spaceman(secret_word):
     print(secret_word)
     print("The secret word contains: {} letters".format(len(secret_word)))
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
-
-    incorrect_guess = 7
+    incorrect_guess = len(secret_word)
     letters_guessed = list()
+    incorrect_letter = list()
     word_is_guessed = False
     while incorrect_guess > 0:
         print("You have {} incorrect guesses, please enter one letter per round". format(incorrect_guess))
@@ -95,17 +95,27 @@ def spaceman(secret_word):
             print("Please only enter one letter at a time")
             player_guess = input("Enter a letter: ")
         if is_guess_in_word(player_guess, secret_word) == False:
-            incorrect_guess-=1
-            if incorrect_guess == 0:
-                print("Game lost")
+            if player_guess in incorrect_letter:
+                print("already guessed, Please try guessing another word")
+            else:
+                incorrect_letter.append(player_guess)
+                print(incorrect_letter)
+                incorrect_guess-=1
+                print("Your guess is incorrect")
+                if incorrect_guess == 0:
+                    print("Game lost")
+                    print(secret_word)
         else:
-            print("Your guess appears in the word: ")
-            letters_guessed.append(player_guess)
-            print("words guessed so far:  ", get_guessed_word(secret_word, letters_guessed))
-            if is_word_guessed(secret_word, letters_guessed):
-                print("Game Won")
-                break
-
+            if player_guess in letters_guessed:
+                print("already guessed, Please try guessing another word")
+            else:
+                print("Your guess appears in the word: ")
+                letters_guessed.append(player_guess)
+                print("words guessed so far:  ", get_guessed_word(secret_word, letters_guessed))
+                if is_word_guessed(secret_word, letters_guessed):
+                    print("Game Won")
+                    break
+                
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
 
