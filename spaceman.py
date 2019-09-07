@@ -1,4 +1,89 @@
 import random
+rocket = (
+"""
+   ________
+    |/   |
+    |   (_)
+    |   /|\
+    |    |
+    |   / \
+    |
+    |___
+    sapceman""",
+
+    """
+       ________
+        |/   |
+        |   (_)
+        |   /|\
+        |    |
+        |   /
+        |
+        |___
+        spacema""",
+
+      """
+     _________
+      |/   |
+      |   (_)
+      |   /|\
+      |    |
+      |
+      |
+      |___
+      sapcem""",
+      """
+     _________
+      |/   |
+      |   (_)
+      |   /|
+      |    |
+      |
+      |
+      |___
+      space""",
+      """
+     ________
+      |/   |
+      |   (_)
+      |    |
+      |    |
+      |
+      |
+      |___
+      spa""",
+   """
+      _________
+       |/   |
+       |   (_)
+       |
+       |
+       |
+       |
+       |___
+       sp""",
+    """
+      _________
+       |/   |
+       |
+       |
+       |
+       |
+       |
+       |___
+       s""",
+       """
+      _________
+       |/
+       |
+       |
+       |
+       |
+       |
+       |___
+       """
+
+)
 
 def load_word():
     '''
@@ -83,7 +168,7 @@ def spaceman(secret_word):
     print(secret_word)
     print("The secret word contains: {} letters".format(len(secret_word)))
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
-    incorrect_guess = len(secret_word)
+    incorrect_guess = 7
     letters_guessed = list()
     incorrect_letter = list()
     word_is_guessed = False
@@ -100,9 +185,12 @@ def spaceman(secret_word):
             else:
                 incorrect_letter.append(player_guess)
                 print(incorrect_letter)
+                print(incorrect_guess)
+                print(rocket[incorrect_guess])
                 incorrect_guess-=1
                 print("Your guess is incorrect")
                 if incorrect_guess == 0:
+                    print(rocket[incorrect_guess])
                     print("Game lost")
                     print(secret_word)
         else:
@@ -114,8 +202,13 @@ def spaceman(secret_word):
                 print("words guessed so far:  ", get_guessed_word(secret_word, letters_guessed))
                 if is_word_guessed(secret_word, letters_guessed):
                     print("Game Won")
-                    break
-                
+                    incorrect_guess = 0
+                    player = input("Do you wanna play again?")
+                    if player.lower() == "yes":
+                        secret_word = load_word()
+                        print(secret_word)
+                        incorrect_guess = len(secret_word)
+
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
 
