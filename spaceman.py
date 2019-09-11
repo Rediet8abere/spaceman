@@ -165,7 +165,6 @@ def spaceman(secret_word):
     #TODO: check if the game has been won or lost
     print("Welcome to Spaceman!")
     print("The secret word contains: {} letters".format(len(secret_word)))
-    print(secret_word)
 
     incorrect_guess = 7
     letters_guessed = list()
