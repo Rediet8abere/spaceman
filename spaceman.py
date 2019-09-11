@@ -192,6 +192,8 @@ def spaceman(secret_word):
                     player = input("Do you wanna play again(yes/no)?")
                     if player.lower() == "yes":
                         secret_word = load_word()
+                        print("The secret word contains: {} letters".format(len(secret_word)))
+                        letters_guessed.clear()
                         incorrect_guess = 7
         else:
             if player_guess in letters_guessed:
@@ -206,6 +208,8 @@ def spaceman(secret_word):
                     player = input("Do you wanna play again(yes/no)?")
                     if player.lower() == "yes":
                         secret_word = load_word()
+                        print("The secret word contains: {} letters".format(len(secret_word)))
+                        letters_guessed.clear()
                         incorrect_guess = 7
 #These function calls that will start the game
 secret_word = load_word()
