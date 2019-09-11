@@ -10,7 +10,7 @@ rocket = (
     |  |___|
     |  `````
     |___
-    sapceman""",
+    spaceman""",
 
     """
        ________
@@ -32,7 +32,7 @@ rocket = (
       |   |   |
       |   |   |
       |___
-      sapcem""",
+      spacem""",
       """
      _________
       |/   /
@@ -101,7 +101,7 @@ def load_word():
     #print(words_list)
     secret_word = random.choice(words_list)
     #print(secret_word)
-    return secret_word
+    return secret_word, words_list
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
@@ -155,9 +155,30 @@ def is_guess_in_word(guess, secret_word):
         if letter == guess:
             return True
     return False
+def mystery(secret_word, words_list):
+    print(secret_word)
+    #print(words_list)
+    print(len(secret_word))
+    print(len(words_list))
+    start = 0
+    end = len(words_list)
+    mid = (start+end)//2
+    print(words_list[mid])
+    print(mid)
+    while start <= end:
+        mid = (start+end)//2
+        print(words_list[mid])
+        if len(words_list[mid]) == len(secret_word):
+            return True
+        elif len(words_list[mid]) > len(secret_word):
+            end = mid - 1
+        else:
+            start = mid + 1
+    return False
 
 
-def spaceman(secret_word):
+
+def spaceman(secret_word, words_list):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
     Args:
@@ -198,6 +219,7 @@ def spaceman(secret_word):
                 print("already guessed, Please try guessing another word")
             else:
                 print("Your guess appears in the word: ")
+                mystery(secret_word, words_list)
                 letters_guessed.append(player_guess)
                 print("words guessed so far:  ", get_guessed_word(secret_word, letters_guessed))
                 if is_word_guessed(secret_word, letters_guessed):
@@ -218,5 +240,5 @@ def spaceman(secret_word):
 
 
 #These function calls that will start the game
-secret_word = load_word()
-spaceman(load_word())
+secret_word, words_list = load_word()
+spaceman(secret_word, words_list)
